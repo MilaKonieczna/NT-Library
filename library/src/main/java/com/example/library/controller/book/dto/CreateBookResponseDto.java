@@ -1,49 +1,26 @@
-package com.example.library.infrastructure.entity;
+package com.example.library.controller.book.dto;
 
-
-import jakarta.persistence.*;
-
-import java.util.List;
-
-@Entity
-@Table(name = "books", schema = "library")
-public class BookEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
+public class CreateBookResponseDto {
     private long id;
-
-    @Basic
-    @Column(name = "isbn", unique = true)
     private String isbn;
-
-    @Basic
-    @Column(name = "title")
     private String title;
-
-    @Basic
-    @Column(name = "author")
     private String author;
-    @Basic
-    @Column(name = "publisher")
     private String publisher;
-
-    @Basic
-    @Column(name = "publication_year")
     private int publicationYear;
-
-    @Basic
-    @Column(name = "available_copies")
     private int availableCopies;
 
-    @OneToMany(mappedBy="book", fetch = FetchType.LAZY)
-    private List<LoanEntity> loans;
+    public CreateBookResponseDto() {
+    }
 
-    @OneToMany(mappedBy="book", fetch = FetchType.LAZY)
-    private List<ReviewEntity> reviews;
-
-    @OneToMany(mappedBy="book", fetch = FetchType.LAZY)
-    private List<DetailEntity> details;
+    public CreateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationYear = publicationYear;
+        this.availableCopies = availableCopies;
+    }
 
     public long getId() {
         return id;

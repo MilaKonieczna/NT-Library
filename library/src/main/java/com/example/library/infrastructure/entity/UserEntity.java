@@ -2,6 +2,8 @@ package com.example.library.infrastructure.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users", schema = "library")
 public class UserEntity {
@@ -11,15 +13,24 @@ public class UserEntity {
     private long id;
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Basic
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private AuthEntity auth;
+
+
+    @Basic
+    @Column(name = "lastName")
+    private String lastName;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<LoanEntity> loans;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<ReviewEntity> reviews;
 
     public long getId() {
         return id;
@@ -45,11 +56,11 @@ public class UserEntity {
         this.name = name;
     }
 
-    public AuthEntity getAuth() {
-        return auth;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAuth(AuthEntity auth) {
-        this.auth = auth;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
