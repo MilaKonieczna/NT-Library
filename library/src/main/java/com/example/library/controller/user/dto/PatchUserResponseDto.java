@@ -1,14 +1,12 @@
 package com.example.library.controller.user.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
-public class GetUserDto {
-    private  long id;
+public class PatchUserResponseDto {
+    private long id;
     private String name;
     private String lastName;
     private String email;
 
-    public GetUserDto(long id, String name, String lastName, String email) {
+    public PatchUserResponseDto(long id, String name, String lastName, String email) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;

@@ -1,18 +1,22 @@
 package com.example.library.controller.review.dto;
 
+import java.time.LocalDate;
+
 public class CreateReviewResponseDto {
     private long id;
+    private LocalDate reviewDate;
     private int rating;
-    private  String comment;
-    private long book;
-    private long user;
+    private String comment;
+    private long userId;
+    private long bookId;
 
-    public CreateReviewResponseDto(long id, int rating, String comment, long book, long user) {
+    public CreateReviewResponseDto(long id, LocalDate reviewDate, int rating, String comment, long userId, long bookId) {
         this.id = id;
+        this.reviewDate = reviewDate;
         this.rating = rating;
         this.comment = comment;
-        this.book = book;
-        this.user = user;
+        this.userId = userId;
+        this.bookId = bookId;
     }
 
     public long getId() {
@@ -21,6 +25,14 @@ public class CreateReviewResponseDto {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public LocalDate getReturnDate() {
+        return reviewDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.reviewDate = returnDate;
     }
 
     public int getRating() {
@@ -39,19 +51,19 @@ public class CreateReviewResponseDto {
         this.comment = comment;
     }
 
-    public long getBook() {
-        return book;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setBook(long book) {
-        this.book = book;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public long getUser() {
-        return user;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setUser(long user) {
-        this.user = user;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 }

@@ -1,7 +1,6 @@
 package com.example.library.infrastructure.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -20,17 +19,31 @@ public class UserEntity {
     @Column(name = "name")
     private String name;
 
-
-
     @Basic
     @Column(name = "lastName")
     private String lastName;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     private List<LoanEntity> loans;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     private List<ReviewEntity> reviews;
+
+    public List<LoanEntity> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanEntity> loans) {
+        this.loans = loans;
+    }
+
+    public List<ReviewEntity> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<ReviewEntity> reviews) {
+        this.reviews = reviews;
+    }
 
     public long getId() {
         return id;

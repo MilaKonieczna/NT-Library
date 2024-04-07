@@ -1,25 +1,24 @@
 package com.example.library.controller.book.dto;
-
 public class CreateBookResponseDto {
     private long id;
     private String isbn;
     private String title;
     private String author;
     private String publisher;
-    private int publicationYear;
+    private int yearPublished;
     private int availableCopies;
 
-    public CreateBookResponseDto() {
-    }
-
-    public CreateBookResponseDto(long id, String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
+    public CreateBookResponseDto(long id, String isbn, String title, String author, String publisher, int yearPublished, int availableCopies) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.publicationYear = publicationYear;
+        this.yearPublished = yearPublished;
         this.availableCopies = availableCopies;
+    }
+
+    public CreateBookResponseDto() {
     }
 
     public long getId() {
@@ -62,12 +61,12 @@ public class CreateBookResponseDto {
         this.publisher = publisher;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public int getYearPublished() {
+        return yearPublished;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setYearPublished(int yearPublished) {
+        this.yearPublished = yearPublished;
     }
 
     public int getAvailableCopies() {

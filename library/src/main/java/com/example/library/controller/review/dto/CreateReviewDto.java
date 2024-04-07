@@ -1,15 +1,21 @@
 package com.example.library.controller.review.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateReviewDto {
     @NotNull
+    @Schema(name = "rating", example = "3")
     private int rating;
-    private  String comment;
+    @Schema(name = "comment", example = "amazing story")
+    private String comment;
     @NotNull
-    private Long bookId;
-    @NotNull
+    @Schema(name = "userId", example = "1")
     private Long userId;
+    @NotNull
+    @Schema(name = "bookId", example = "2")
+    private Long bookId;
 
     public CreateReviewDto(int rating, String comment, Long bookId, Long userId) {
         this.rating = rating;

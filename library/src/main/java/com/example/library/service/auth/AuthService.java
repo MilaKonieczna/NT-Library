@@ -8,7 +8,8 @@ import com.example.library.infrastructure.entity.AuthEntity;
 import com.example.library.infrastructure.entity.UserEntity;
 import com.example.library.infrastructure.repository.AuthRepository;
 import com.example.library.infrastructure.repository.UserRepository;
-import com.example.library.service.auth.error.UserAlreadyExistsException;
+import com.example.library.service.auth.error.Unauthorized;
+import com.example.library.service.user.error.UserAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class AuthService {
     private final AuthRepository authRepository;
     private final UserRepository userRepository;
     private final JwtService jwtService;
-    private  final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public AuthService(AuthRepository authRepository, UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder) {
@@ -30,13 +31,15 @@ public class AuthService {
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
     }
-@Transactional
-    public RegisterResponseDto register(RegisterDto dto){
+
+    @Transactional
+    public RegisterResponseDto register(RegisterDto dto) {
 
         Optional<AuthEntity> existingAuth = authRepository.findByUsername(dto.getUsername());
 
-        if(existingAuth.isPresent()) {
-            throw  UserAlreadyExistsException.create(dto.getUsername());}
+        if (existingAuth.isPresent()) {
+            throw UserAlreadyExists.create(dto.getUsername());
+        }
 
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(dto.getEmail());
@@ -52,15 +55,15 @@ public class AuthService {
         authRepository.save(authEntity);
         return new RegisterResponseDto(userEntity.getId(), authEntity.getUsername(), authEntity.getRole());
     }
-    public LoginResponseDto logIn(LoginDto dto){
-        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(()-> new RuntimeException("User not found"));
 
-        if(!passwordEncoder.matches(dto.getPassword(), authEntity.getPassword())){
-            throw new RuntimeException();
+    public LoginResponseDto login(LoginDto dto) {
+        AuthEntity authEntity = authRepository.findByUsername(dto.getUsername()).orElseThrow(Unauthorized::create);
+
+        if(!passwordEncoder.matches(dto.getPassword(),authEntity.getPassword())){
+            throw Unauthorized.create();
         }
 
         String token = jwtService.generateToken(authEntity);
-
         return new LoginResponseDto(token);
     }
 

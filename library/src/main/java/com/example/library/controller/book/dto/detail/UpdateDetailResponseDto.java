@@ -1,23 +1,24 @@
-package com.example.library.controller.book.dto;
+package com.example.library.controller.book.dto.detail;
 
-public class GetBookDto {
+public class UpdateDetailResponseDto{
     private long id;
     private String isbn;
     private String title;
     private String author;
     private String publisher;
-    private int publicationYear;
-    private boolean isAvailable;
+    private int yearPublished;
+    private int availableCopies;
+    private DetailDto details;
 
-
-    public GetBookDto(long id, String isbn, String title, String author, String publisher, int publicationYear, boolean isAvailable) {
+    public UpdateDetailResponseDto(long id, String isbn, String title, String author, String publisher, int yearPublished, int availableCopies, DetailDto details) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
-        this.publicationYear = publicationYear;
-        this.isAvailable = isAvailable;
+        this.yearPublished = yearPublished;
+        this.availableCopies = availableCopies;
+        this.details = details;
     }
 
     public long getId() {
@@ -60,19 +61,27 @@ public class GetBookDto {
         this.publisher = publisher;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public int getYearPublished() {
+        return yearPublished;
     }
 
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
+    public void setYearPublished(int yearPublished) {
+        this.yearPublished = yearPublished;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
+    }
+
+    public DetailDto getDetails() {
+        return details;
+    }
+
+    public void setDetails(DetailDto details) {
+        this.details = details;
     }
 }

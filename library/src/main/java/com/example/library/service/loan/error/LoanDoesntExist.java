@@ -1,16 +1,16 @@
-package com.example.library.service.book.error;
+package com.example.library.service.loan.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-public class BookNotFound extends RuntimeException {
+public class LoanDoesntExist extends RuntimeException {
 
-    private BookNotFound(String message) {
+    private LoanDoesntExist(String message) {
         super(message);
     }
 
     public static ResponseStatusException create(long id) {
-        BookNotFound exception = new BookNotFound(String.format("Book with id: %s not found.", id));
+        LoanDoesntExist exception = new LoanDoesntExist(String.format("Loan with id: %s doesn't exist.", id));
         return new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage(), exception);
     }
 }

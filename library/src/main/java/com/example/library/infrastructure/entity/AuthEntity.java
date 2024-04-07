@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "auth", schema = "library")
 public class AuthEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Basic

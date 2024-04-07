@@ -3,16 +3,16 @@ package com.example.library.controller.loan.dto;
 import com.example.library.controller.book.dto.GetBookDto;
 import com.example.library.controller.user.dto.GetUserDto;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class GetLoanResponseDto {
     private long id;
-    private Date loanDate;
-    private Date dueDate;
+    private LocalDate loanDate;
+    private LocalDate dueDate;
     private GetUserDto userId;
     private GetBookDto bookId;
 
-    public GetLoanResponseDto(long id, Date loanDate, Date dueDate, GetUserDto userId, GetBookDto bookId) {
+    public GetLoanResponseDto(long id, LocalDate loanDate, LocalDate dueDate, GetUserDto userId, GetBookDto bookId) {
         this.id = id;
         this.loanDate = loanDate;
         this.dueDate = dueDate;
@@ -28,19 +28,19 @@ public class GetLoanResponseDto {
         this.id = id;
     }
 
-    public Date getLoanDate() {
+    public LocalDate getLoanDate() {
         return loanDate;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(LocalDate loanDate) {
         this.loanDate = loanDate;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

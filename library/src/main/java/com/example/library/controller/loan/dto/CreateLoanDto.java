@@ -1,30 +1,24 @@
 package com.example.library.controller.loan.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class CreateLoanDto {
     @NotNull
-    private Date dueDate;
-    @NotNull
+    @Schema(name = "userId", example = "2")
     private Long userId;
     @NotNull
+    @Schema(name = "bookId", example = "2")
     private Long bookId;
 
-    public CreateLoanDto(Date dueDate, long userId, long bookId) {
-        this.dueDate = dueDate;
+    public CreateLoanDto(long userId, long bookId) {
         this.userId = userId;
         this.bookId = bookId;
     }
 
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
 
     public long getUserId() {
         return userId;

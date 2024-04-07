@@ -1,31 +1,20 @@
 package com.example.library.controller.book.dto;
 
-public class GetBookDto {
-    private long id;
+public class PatchBookResponseDto {
     private String isbn;
     private String title;
     private String author;
     private String publisher;
     private int publicationYear;
-    private boolean isAvailable;
+    private int availableCopies;
 
-
-    public GetBookDto(long id, String isbn, String title, String author, String publisher, int publicationYear, boolean isAvailable) {
-        this.id = id;
+    public PatchBookResponseDto(String isbn, String title, String author, String publisher, int publicationYear, int availableCopies) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publicationYear = publicationYear;
-        this.isAvailable = isAvailable;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.availableCopies = availableCopies;
     }
 
     public String getIsbn() {
@@ -68,11 +57,11 @@ public class GetBookDto {
         this.publicationYear = publicationYear;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public int getAvailableCopies() {
+        return availableCopies;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailableCopies(int availableCopies) {
+        this.availableCopies = availableCopies;
     }
 }

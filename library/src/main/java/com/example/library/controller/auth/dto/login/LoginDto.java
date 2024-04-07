@@ -1,7 +1,14 @@
 package com.example.library.controller.auth.dto.login;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+
 public class LoginDto {
+    @Schema(name = "username", example = "admin")
+    @NotBlank(message = "Username must be provided")
     private String username;
+    @Schema(name = "password", example = "admin")
+    @NotBlank(message = "Password must be provided")
     private String password;
 
     public LoginDto(String username, String password) {
